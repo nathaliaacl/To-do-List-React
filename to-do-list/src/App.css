@@ -4,7 +4,6 @@ body{
   padding: 30px;
   color: #333;
   background-image: url('./wallpaper.jpg');
-  background-position: center;
   background-size: cover;
 }
 .app{
@@ -94,4 +93,18 @@ input,select{
   display: inline;
   justify-content: space-between;
   align-items: center;
+}
+.form{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.filter__content{
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter__item{
+  flex: 1 0 0;
 }

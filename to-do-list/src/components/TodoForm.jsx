@@ -23,7 +23,7 @@ const TodoForm = ({addTodo}) => {
             <h2>
                 Criar tarefa
             </h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='form'>
                 <input type="text" placeholder='Digite o título' 
                 value={value}
                 onChange={(e) => setValue(e.target.value)}/>
@@ -33,7 +33,7 @@ const TodoForm = ({addTodo}) => {
                     <option value='Faculdade'>Faculdade</option>
                     <option value='Estágio'>Estágio</option>
                 </select>
-                <button type='submit'><EditOutlined style={{fontSize: '20px'}} /></button>
+                <button type='submit'><EditOutlined style={{fontSize: '16px'}} /></button>
                 
             </form>
         </div>

@@ -8,28 +8,35 @@ import Filter from './components/Filter';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [todos, setTodos] = useState(
-    [
-      {
-        id: 1,
-        text: "Ler livro de Steve Jobs",
-        category: "Pessoal",
-        isCompleted: false,
-      },
-      {
-        id: 2,
-        text: "Aprender ReactJS",
-        category: "Estágio",
-        isCompleted: false,
-      },
-      {
-        id: 3,  
-        text: "Academia",
-        category: "Pessoal",
-        isCompleted: false,
-      },
-    ]
-  );
+  // const [todos, setTodos] = useState(
+  //   [
+  //     {
+  //       id: 1,
+  //       text: "Ler livro de Steve Jobs",
+  //       category: "Pessoal",
+  //       isCompleted: false,
+  //     },
+  //     {
+  //       id: 2,
+  //       text: "Aprender ReactJS",
+  //       category: "Estágio",
+  //       isCompleted: false,
+  //     },
+  //     {
+  //       id: 3,  
+  //       text: "Academia",
+  //       category: "Pessoal",
+  //       isCompleted: false,
+  //     },
+  //   ]
+  // );
+
+    const [todos, setTodos] = useState(() => {
+    const todo = window.localStorage.getItem("todos");
+    return todo !== null
+      ? JSON.parse(todo)
+      : [];
+  })
 
   const addTodo = (text, category) => {
     const newTodos = [...todos,{
@@ -39,6 +46,8 @@ function App() {
         isCompleted: false,
       }
     ]
+
+    localStorage.setItem("todos", JSON.stringify(newTodos))
     setTodos(newTodos) //atualizar o componente
   }
 
@@ -46,14 +55,16 @@ function App() {
     const newTodos = [...todos]
     const filteredTodos = newTodos.filter((todo) => 
     todo.id !== id? todo : null);
-    setTodos(filteredTodos);
+    localStorage.setItem("todos", JSON.stringify(filteredTodos))
+    setTodos(filteredTodos) //atualizar o componente
   }
 
   const completeTodo = (id) => {
     const newTodos = [...todos]
     // o map modifica o array original diferente do filtered
     newTodos.map((todo)=> todo.id === id? todo.isCompleted = !todo.isCompleted:todo)
-    setTodos(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos))
+    setTodos(newTodos) //atualizar o componente
   }
 
   const [search, setSearch] = useState("");
